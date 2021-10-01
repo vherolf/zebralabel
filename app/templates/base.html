@@ -1,0 +1,27 @@
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Zebra Label</title>
+      {% else %}
+      <title>Zebra Label</title>
+      {% endif %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/zebralabel.css') }}">
+    </head>
+    <body>
+        <div>
+            Labelmaker: 
+            <a href="{{ url_for('label') }}">Labels</a>
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>
